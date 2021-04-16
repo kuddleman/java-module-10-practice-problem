@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.*;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -37,8 +38,26 @@ public class ConversionGUI extends Application {
         VBox inputBox = new VBox(inputLabel, inputField);
         inputBox.setAlignment(Pos.CENTER);
         inputBox.setSpacing(20);
+        primaryBox.getChildren().add(inputBox);
 
         convertButton = new Button("Convert");
+        convertButton.setOnAction(
+                 event -> {
+                    ConversionType typeSelected = conversionTypeBox.getValue();
+                    if(typeSelected != null && !inputField.getText().isEmpty()) {
+                        double input = Double.parseDouble(inputField.getText());
+
+                        Converter converter = Converter.createConverter(typeSelected);
+                        double output = converter.convert(input);
+                        resultText.setText(Double.toString(output));
+                    } else {
+                        resultText.setText("Error: all fields are required");
+                    }
+
+                }
+        );
+
+
         VBox buttonBox = new VBox(convertButton);
         buttonBox.setAlignment(Pos.CENTER);
         buttonBox.setSpacing(20);
@@ -50,6 +69,8 @@ public class ConversionGUI extends Application {
         resultBox.setAlignment(Pos.CENTER);
         resultBox.setSpacing(20);
         primaryBox.getChildren().add(resultBox);
+
+
 
         Scene scene = new Scene(primaryBox, 300, 300);
         primaryStage.setTitle("Measurement Converter");

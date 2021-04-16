@@ -1,8 +1,6 @@
 package sample;
-@FunctionalInterface   //this is notation: a cue to reader that this is a functional interface
-public interface Converter {
-    double convert(double input);
 
+public class ConverterFactory {
     public static final double POUNDS_IN_OUNCES = 16;
     public static final double OUNCES_TO_POUNDS = 0.0625;
     public static final double GRAMS_IN_OUNCES = 0.035274;
