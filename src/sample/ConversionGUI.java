@@ -2,6 +2,7 @@ package sample;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.*;
@@ -36,6 +37,25 @@ public class ConversionGUI extends Application {
         VBox inputBox = new VBox(inputLabel, inputField);
         inputBox.setAlignment(Pos.CENTER);
         inputBox.setSpacing(20);
+
+        convertButton = new Button("Convert");
+        VBox buttonBox = new VBox(convertButton);
+        buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.setSpacing(20);
+        primaryBox.getChildren().add(buttonBox);
+
+        Text resultLabel = new Text("Result:");
+        resultText = new Text();
+        VBox resultBox = new VBox(resultLabel, resultText);
+        resultBox.setAlignment(Pos.CENTER);
+        resultBox.setSpacing(20);
+        primaryBox.getChildren().add(resultBox);
+
+        Scene scene = new Scene(primaryBox, 300, 300);
+        primaryStage.setTitle("Measurement Converter");
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.show();
 
     }
 
